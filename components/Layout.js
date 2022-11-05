@@ -1,0 +1,50 @@
+import Head from "next/head";
+import styles from "./layout.module.css";
+import utilStyles from "../styles/utils.module.css";
+import Link from "next/link";
+
+const name = "Shin Code";
+export const siteTitle = "Next.js blog";
+
+function Layout({ children, home }) {
+  return (
+    <div className={styles.container}>
+      <Head>
+        <link rel="icon" herf="/favicon,ico" />
+      </Head>
+      <header className={styles.header}>
+        {home ? (
+          <>
+            <picture>
+              <img
+                src="/images/profile.png"
+                className={`${utilStyles.borderCircle} ${styles.headerHomeImage}`}
+                alt=""
+              />
+            </picture>
+            <h1 className={utilStyles.heading2Xl}>{name}</h1>
+          </>
+        ) : (
+          <>
+            <picture>
+              <img
+                src="/images/profile.png"
+                className={`${utilStyles.borderCircle}`}
+                alt=""
+              />
+            </picture>
+            <h1 className={utilStyles.heading2Xl}>{name}</h1>
+          </>
+        )}
+      </header>
+      <main>{children}</main>
+      {!home && (
+        <div>
+          <Link href="/">← ホームへ戻る</Link>
+        </div>
+      )}
+    </div>
+  );
+}
+
+export default Layout;
